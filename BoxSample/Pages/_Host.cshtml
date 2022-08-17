@@ -4,6 +4,7 @@
 @{
     Layout = null;
 }
+@using Microsoft.AspNetCore.Authentication
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +18,12 @@
     <link href="BoxSample.styles.css" rel="stylesheet" />
 </head>
 <body>
+    @{
+        var token = await HttpContext.GetTokenAsync("access_token");
+    }
+
+    <app>@(await Html.RenderComponentAsync<App>(RenderMode.Server, new { AccessToken = token }))</app>
+
     <component type="typeof(App)" render-mode="ServerPrerendered" />
 
     <div id="blazor-error-ui">

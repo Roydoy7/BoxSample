@@ -1,8 +1,8 @@
 ﻿@page "/fetchdata"
-
+@attribute [Authorize]
 @using BoxSample.Data
 @inject WeatherForecastService ForecastService
-
+@inject AccessTokenService TokenService
 <h1>Weather forecast</h1>
 
 <p>This component demonstrates fetching data from a service.</p>
