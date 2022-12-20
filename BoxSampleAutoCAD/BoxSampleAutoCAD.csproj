@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net46</TargetFramework>
+	  <UseWPF>true</UseWPF>
+	  <LangVersion>9.0</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoCAD.NET" Version="22.0.0" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1462.37" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="BoxAuthCredential.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="BoxIntegration\Views\BoxAuthForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="BoxIntegration\Views\BoxDownloadForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="BoxIntegration\Views\BoxUploadForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+
+</Project>

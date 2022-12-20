@@ -1,0 +1,65 @@
+﻿<Window x:Class="BoxSampleAutoCAD.BoxIntegration.Views.BoxUploadForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BoxSampleAutoCAD.BoxIntegration.Views"
+             mc:Ignorable="d" 
+             Height="320" Width="600"
+             Title="BoxUploadForm"
+             >
+
+    <!--<Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/BlockFlowTool;component/BlockFlowTool/Resources/Style.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>-->
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        
+        <!--<materialDesign:ColorZone Mode="PrimaryMid" Padding="15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Box" Width="25" Height="25" VerticalAlignment="Center" Foreground="White"/>
+                    <TextBlock VerticalAlignment="Center" Text="にアップロード" Foreground="White" FontWeight="Bold"/>
+                </StackPanel>                
+            </Grid>
+        </materialDesign:ColorZone>-->
+
+        <ProgressBar Grid.Row="1" IsIndeterminate="{Binding IsUploading}"/>
+
+        <StackPanel Grid.Row="2">
+            <StackPanel Orientation="Horizontal" Margin="10 40 10 0">
+                <TextBlock Margin="40 0 0 0" VerticalAlignment="Center"  Text="boxフォルダurl:"/>
+                <TextBox Margin="10 0 0 0" VerticalAlignment="Center" Width="350" Text="{Binding FolderUrl}"/>                
+            </StackPanel>
+            <TextBlock Margin="50 10 0 0" Text="例: https://organo.ent.box.com/folder/0"/>
+            <StackPanel Orientation="Horizontal" Margin="10 30 10 0">
+                <TextBlock Margin="40 0 0 0" VerticalAlignment="Center" Text="ファイル名:"/>
+                <TextBox Margin="10 0 0 0" VerticalAlignment="Center" Width="300" Text="{Binding FilePath}"/>
+                <Button Margin="10 0 0 0" Width="60" Content="開く" Command="{Binding OpenFileCommand}"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left">
+            <TextBlock Margin="20 0" VerticalAlignment="Center" Text="{Binding Message}"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button VerticalAlignment="Center" Width="85" Margin="5 0" Content="Upload" Command="{Binding UploadCommand}"/>
+            <Button VerticalAlignment="Center" Width="75" Margin="5 0" Content="Close" Command="{Binding CloseCommand}"/>
+        </StackPanel>
+    </Grid>
+</Window>

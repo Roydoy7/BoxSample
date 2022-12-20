@@ -1,0 +1,51 @@
+﻿<Window x:Class="BoxSampleAutoCAD.BoxIntegration.Views.BoxAuthForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:local="clr-namespace:BoxSampleAutoCAD.BoxIntegration.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+             xmlns:dataConverters="clr-namespace:BoxSampleAutoCAD.BoxIntegration.DataConverters"
+             mc:Ignorable="d" 
+             Height="550" Width="480"
+             Title="boxログイン"
+             >
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <!--<ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/BlockFlowTool;component/BlockFlowTool/Resources/Style.xaml"/>
+            </ResourceDictionary.MergedDictionaries>-->
+            <dataConverters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+        <wv2:WebView2 Name="webView2" Visibility="{Binding IsShowWebView2, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <b:Interaction.Triggers>
+                <b:EventTrigger EventName="NavigationCompleted">
+                    <b:InvokeCommandAction Command="{Binding OnNavigatedCommand}" CommandParameter="{Binding Source, ElementName=webView2}"/>
+                </b:EventTrigger>
+            </b:Interaction.Triggers>
+        </wv2:WebView2>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Visibility="{Binding IsShowSuccessView, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel Orientation="Horizontal">
+                <!--<materialDesign:PackIcon Kind="CheckCircle" Foreground="Green" Width="35" Height="35"/>-->
+                <TextBlock VerticalAlignment="Center" Text="ログイン成功しました。" FontSize="24"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Margin="0 15 0 0" Width="75" Content="Ok" Command="{Binding OkCommand}"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Visibility="{Binding IsShowLoginingView, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel Orientation="Horizontal">
+                <ProgressBar Margin="0 0 5 0" IsIndeterminate="True"/>
+                <TextBlock VerticalAlignment="Center" Text="ログインしています..." FontSize="24"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
