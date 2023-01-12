@@ -44,6 +44,13 @@ and paste into BoxAuthCredential.json.
 
 To download or upload file to box.com, check 'Write all files and folders stored in Box' at the Application Scopes section.
 
+### Settings of Redirect URIs
+A redirect URL must be set when logining to box.com.
+For desktop application, the redirect URL can be this:
+```
+https://localhost/oauth/callback
+```
+
 ## BoxAuthCredential.json
 Make sure this file is located in the same folder with the dll.
 
